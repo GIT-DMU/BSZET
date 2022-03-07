@@ -1,0 +1,32 @@
+.container 
+{
+  height: 25em;
+  font-family: arial;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  /* Center vertically and horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.block 
+{
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #04AA6D;
+  padding: 14px 28px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+}
+.border
+{
+   border: grey;
+   border-style: groove;
+   border-width: 1px;
+   border-radius: 5px;
+   width: auto;
+}
