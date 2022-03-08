@@ -1,7 +1,7 @@
 <?php
 // Zugriff auf Datenbank 
     // Variablen
-    $hostname = "192.168.248.10";
+    $hostname = "127.0.0.1";
     $username = "SQL-Admin";
     $password = "9b9GCVhtBxPQtp6mv2yy";
     $DB = "DB_Doubtful_Joy_SE";
@@ -17,31 +17,29 @@ if($DBConnection->connect_error)											// Abfrage ob Verbindung nicht erfolg
 
 // Erstellen Tabelle USER
 
-// Erstellen des SQL-Statement zum Erstellen der Tabelle und Speichern dieser auf der Variable query
-$query = "CREATE TABLE USER													
-(
-	ID 			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	USERNAME 	TEXT,
-	PASSWORD 	TEXT,
-	USERLEVEL 	INT,
-	STATUS		BOOL
-	
-)";		
+// Erstellen des SQL-Statement zum Erstellen der Tabelle und Speichern dieser auf der Variable query	
 
-$retval = mysqli_query($DBConnection, $query);
+//$query = "CREATE TABLE TICKETS
+//(
+//	ID			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+//	BETREFF		TEXT,
+//	KUNDE		TEXT,
+//	BEARBEITER	TEXT,
+//	PROBLEM		TEXT,
+//	STATUS		BOOL
+//)";
 
-if(!$retval)
-{
-    die("<br>Tabelle konnte nicht erstellt werden: ".mysqli_error());
-}
-echo "<br>Tabelle wurde erstellt!";
-// Erstellen Admin User
+//$retval = mysqli_query($DBConnection, $query);
 
-$password = 'Password';
-$hash = password_hash($password, PASSWORD_DEFAULT);
+//if(!$retval)
+//{
+//    die("<br>Tabelle konnte nicht erstellt werden: ".mysqli_error());
+//}
+//echo "<br>Tabelle wurde erstellt!";
 
-$query = "INSERT INTO USER	(	USERNAME,	PASSWORD,	USERLEVEL,	STATUS)
-				VALUES		(	'Admin',	'$hash',	'0',		'1')";
+// Erstellen Tickets
+$query = "INSERT INTO Tickets	(	BETREFF,KUNDE,BEARBEITER, Problem,STATUS)
+					VALUES		(	'Netzerkcrash',	'FrankiTents GmbH',	'Dispatcher-01','LAN am PC-12-39 hat täglich Fehler!', '1')";
 
 $retval = mysqli_query($DBConnection, $query);
 

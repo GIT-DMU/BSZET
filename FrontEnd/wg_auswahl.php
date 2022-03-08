@@ -5,7 +5,7 @@ $Auswahl = $_POST["Button"];					// Übername der Daten aus dem Formular ( Ticke
 switch($Auswahl)
 {
     case "Ticket":
-        echo "Ticket";
+        header('Location: ticket.php');
     break;
     case "Index":
         echo "Index";

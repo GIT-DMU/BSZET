@@ -4,12 +4,11 @@ session_start();							// Starten oder Weiterführen einer Session
 
 if(!isset($_SESSION['UserID'])) 			// Wenn nicht eingeloggt
 {
-	echo "Nice try ... logg dich ein ^^";
+	echo "Es wurde noch keine Sitzung mit diesem User gestartet";
 	session_destroy();
-	echo ("<meta http-equiv='refresh' content='3; url=../login.php'>");
+	header('Location:../Login/index.php');
 }
-{
-	?>
+?>
 	<link rel="stylesheet" href="../style.css" media="screen" />
 	<div class="container">
 
@@ -24,8 +23,8 @@ if(!isset($_SESSION['UserID'])) 			// Wenn nicht eingeloggt
 
 
 	</div>
-	<?php
-}
+
+<?php
 
 ?>
 
