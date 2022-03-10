@@ -1,7 +1,7 @@
 <?php
 // Zugriff auf Datenbank 
     // Variablen
-    $hostname = "127.0.0.1";
+    $hostname = "192.168.13.10";
     $username = "SQL-Admin";
     $password = "9b9GCVhtBxPQtp6mv2yy";
     $DB = "DB_Doubtful_Joy_SE";
@@ -35,8 +35,8 @@ echo "<br>Tabelle wurde erstellt!";
 // Erstellen USER-Admin
 $ADM_PWD = "Password";
 $Hash = password_hash($ADM_PWD,PASSWORD_DEFAULT);
-$query = "INSERT INTO Tickets	(	USERNAME,PASSWORD,USERLEVEL,STATUS)
-					VALUES		(	'Admin',	'$Hash',	'0', '1')";
+$query = "INSERT INTO USER	(	USERNAME,PASSWORD,USERLEVEL,STATUS)
+				VALUES		(	'Admin',	'$Hash',	'0', '1')";
 
 $retval = mysqli_query($DBConnection, $query);
 
@@ -66,7 +66,7 @@ if(!$retval)
 echo "<br>Tabelle wurde erstellt!";
 
 // Erstellen Tickets
-$query = "INSERT INTO Tickets	(	BETREFF,KUNDE,BEARBEITER, Problem,STATUS)
+$query = "INSERT INTO TICKETS	(	BETREFF,KUNDE,BEARBEITER, Problem,STATUS)
 					VALUES		(	'Netzerkcrash',	'FrankiTents GmbH',	'Dispatcher-01','LAN am PC-12-39 hat täglich Fehler!', '1')";
 
 $retval = mysqli_query($DBConnection, $query);

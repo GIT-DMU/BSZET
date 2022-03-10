@@ -4,7 +4,7 @@
 <body border="0">
 
 <?php
-$host = "127.0.0.1";
+$host = "192.168.13.10";
 $user = "SQL-Admin"; 																		// DB-User
 $password = "9b9GCVhtBxPQtp6mv2yy"; 														// DB-User-Password
 $dbname = "DB_Doubtful_Joy_SE"; 															//DB-Name
@@ -17,7 +17,6 @@ if (!$con)
 }
 
 ?>
-
 <table border="1" align="center" class="container">
 <tr>
   <td>ID</td>
@@ -28,9 +27,16 @@ if (!$con)
   <td>Status</td>
 </tr>
 <?php
+$count = mysqli_query($con, "SELECT COUNT(ID) AS CTICKETS FROM TICKETS")
+  or die (mysqli_error($con));
+while($counter = mysqli_fetch_array($count))
+{
+  echo "<h2>Anzahl Tickets: {$counter['CTICKETS']}</h1>";
+}
 
-$query = mysqli_query($con, "SELECT * FROM `tickets`")
-   or die (mysqli_error($dbconnect));
+  
+$query = mysqli_query($con, "SELECT * FROM TICKETS")
+   or die (mysqli_error($con));
 
 while ($row = mysqli_fetch_array($query)) {
   echo
@@ -41,7 +47,7 @@ while ($row = mysqli_fetch_array($query)) {
     <td>{$row['BEARBEITER']}</td>
     <td>{$row['PROBLEM']}</td>
     <td>{$row['STATUS']}</td>
-   </tr>\n";
+   </tr>";
 
 }
 
@@ -77,7 +83,6 @@ if(isset($_POST['Betreff'],$_POST['Kunde'],$_POST['Bearbeiter'],$_POST['Problem'
 ?>
 </table>
 </body>
-
 <div class="container">																												<!-- Erstellen div und hinzufügen zur Klasse Container -->
 	
 		<form action="" method="POST">																				<!-- Erstellen form + setzen des "action"-Attributes, zum senden der Daten an "login_submit.php" + setzen des "method"-Attributes, zum festlegen der Übertragung -->

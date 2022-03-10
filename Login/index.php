@@ -2,7 +2,7 @@
 
 session_start();
 
-$host = "127.0.0.1"; 																	// DB-Host
+$host = "192.168.13.10"; 																	// DB-Host
 $user = "SQL-Admin"; 																		// DB-User
 $password = "9b9GCVhtBxPQtp6mv2yy"; 														// DB-User-Password
 $dbname = "DB_Doubtful_Joy_SE"; 															//DB-Name
@@ -21,7 +21,7 @@ if(isset($_POST['login'])) 																	// Wenn Input-login gesetzt..
     
     if ($Login_User != "" && $Login_Password != ""){													//Wenn Login und Password nicht leer..
 
-        $sql_query = "Select * FROM `user` WHERE USERNAME='".$Login_User."' LIMIT 1";				//Query Select * , wenn User existiert
+        $sql_query = "Select * FROM USER WHERE USERNAME='".$Login_User."' LIMIT 1";				//Query Select * , wenn User existiert
         $result = mysqli_query($con,$sql_query);											//Speichern der Query in result
         $row = mysqli_fetch_array($result);   													//Speichern der Inhalte der Spalten in row
         $PWmatch = password_verify($Login_Password,$row['PASSWORD']);								//Erstellen PW_verify_hash für Passwort
