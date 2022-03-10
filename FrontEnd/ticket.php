@@ -60,10 +60,10 @@ if(isset($_POST['Betreff'],$_POST['Kunde'],$_POST['Bearbeiter'],$_POST['Problem'
                           VALUES		(	'$Betreff',	'$Kunde',	'$Bearbeiter','$Problem', '1')";
 
       $retval = mysqli_query($con, $query);
-
+      header('Location: ticket.php');	
       if(!$retval)
       {
-          die("<br>User konnte nicht erstellt werden: ".mysqli_error());
+          die("<br>Ticket konnte nicht erstellt werden!: ".mysqli_error());
       }
        
 

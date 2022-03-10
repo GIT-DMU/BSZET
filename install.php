@@ -16,26 +16,54 @@ if($DBConnection->connect_error)											// Abfrage ob Verbindung nicht erfolg
 }
 
 // Erstellen Tabelle USER
+$query = "CREATE TABLE USER
+(
+	ID			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	USERNAME	TEXT,
+	PASSWORD	TEXT,
+	USERLEVEL	INT,
+	STATUS		BOOL
+)";
 
-// Erstellen des SQL-Statement zum Erstellen der Tabelle und Speichern dieser auf der Variable query	
+$retval = mysqli_query($DBConnection, $query);
 
-//$query = "CREATE TABLE TICKETS
-//(
-//	ID			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//	BETREFF		TEXT,
-//	KUNDE		TEXT,
-//	BEARBEITER	TEXT,
-//	PROBLEM		TEXT,
-//	STATUS		BOOL
-//)";
+if(!$retval)
+{
+    die("<br>Tabelle konnte nicht erstellt werden: ".mysqli_error());
+}
+echo "<br>Tabelle wurde erstellt!";
+// Erstellen USER-Admin
+$ADM_PWD = "Password";
+$Hash = password_hash($ADM_PWD,PASSWORD_DEFAULT);
+$query = "INSERT INTO Tickets	(	USERNAME,PASSWORD,USERLEVEL,STATUS)
+					VALUES		(	'Admin',	'$Hash',	'0', '1')";
 
-//$retval = mysqli_query($DBConnection, $query);
+$retval = mysqli_query($DBConnection, $query);
 
-//if(!$retval)
-//{
-//    die("<br>Tabelle konnte nicht erstellt werden: ".mysqli_error());
-//}
-//echo "<br>Tabelle wurde erstellt!";
+if(!$retval)
+{
+    die("<br>User konnte nicht erstellt werden: ".mysqli_error());
+}
+echo "<br>User wurde erstellt!";
+
+// Erstellen Tabelle Tickets
+$query = "CREATE TABLE TICKETS
+(
+	ID			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	BETREFF		TEXT,
+	KUNDE		TEXT,
+	BEARBEITER	TEXT,
+	PROBLEM		TEXT,
+	STATUS		BOOL
+)";
+
+$retval = mysqli_query($DBConnection, $query);
+
+if(!$retval)
+{
+    die("<br>Tabelle konnte nicht erstellt werden: ".mysqli_error());
+}
+echo "<br>Tabelle wurde erstellt!";
 
 // Erstellen Tickets
 $query = "INSERT INTO Tickets	(	BETREFF,KUNDE,BEARBEITER, Problem,STATUS)
@@ -47,5 +75,5 @@ if(!$retval)
 {
     die("<br>User konnte nicht erstellt werden: ".mysqli_error());
 }
-echo "<br>User wurde erstellt!";
+echo "<br>Ticket wurde erstellt!";
 ?>
