@@ -45,7 +45,7 @@ while ($row = mysqli_fetch_array($query)) {
 
 }
 
-if(isset($_POST['Betreff','Kunde','Bearbeiter','Problem'])) 																	// Wenn Input-Ticket gesetzt..
+if(isset($_POST['Betreff'],$_POST['Kunde'],$_POST['Bearbeiter'],$_POST['Problem'])) 																	// Wenn Input-Ticket gesetzt..
 {
 
     $Betreff = $_POST['Betreff']; 																
@@ -56,30 +56,21 @@ if(isset($_POST['Betreff','Kunde','Bearbeiter','Problem'])) 																	// 
     if ($Betreff != "" && $Kunde != "" && $Bearbeiter != "" && $Problem != "")                //Wenn Eingabefelder nicht leer...
     {													
 
-        $sql_query = "Select * FROM `tickets` WHERE KUNDE='".$Kunde."'";				//Query Select * , wenn Daten zu Kunde vorhanden existiert
-        $result = mysqli_query($con,$sql_query);                                //Speichern der Query in result
-        $row = mysqli_fetch_array($result);                                     //Speichern der Inhalte der Spalten in row
-        								                                                        //Erstellen PW_verify_hash für Passwort
-        if($row > 0)                                                            //Wenn User existiert..
-        {
-          if($row['PASSWORD'] == $PWmatch)													//Wenn Passwort verifiziert wurde..
-          {
-            if($row['STATUS'])															//Wenn User-Status aktiv
-            {
-              $_SESSION['UserID'] = $row['ID'];											//Ändern der Session-ID zu User-ID
-                    header('Location:../FrontEnd/index.php');								//Weiterleitung zu Intranet
-            }
-                          
-          }
-                
-            }
-        else																				//Wenn User nicht existiert..
-        {
-          echo "Invalid username and password";											//Fehlermeldung
-          header('Location: ticket.php');												//Zurück zum Login
-                                          
-        }
+      $query = "INSERT INTO Tickets	(	BETREFF,KUNDE,BEARBEITER, Problem,STATUS)
+                          VALUES		(	'$Betreff',	'$Kunde',	'$Bearbeiter','$Problem', '1')";
 
+      $retval = mysqli_query($con, $query);
+
+      if(!$retval)
+      {
+          die("<br>User konnte nicht erstellt werden: ".mysqli_error());
+      }
+       
+
+    } else																				//Wenn Input leer.
+    {										
+      header('Location: ticket.php');							//Zurück zur Übersicht
+                                      
     }
 
 }
