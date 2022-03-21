@@ -1,21 +1,19 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <link rel="stylesheet" href="../style.css" media="screen" />
 <html>
 <body border="0">
 
 <?php
-$host = "192.168.13.10";
-$user = "SQL-Admin"; 																		// DB-User
-$password = "9b9GCVhtBxPQtp6mv2yy"; 														// DB-User-Password
-$dbname = "DB_Doubtful_Joy_SE"; 															//DB-Name
-
-$con = mysqli_connect($host, $user, $password, $dbname);
-
+$host = "192.168.13.10";                                  // DB-Host
+$user = "SQL-Admin"; 																		  // DB-User
+$password = "9b9GCVhtBxPQtp6mv2yy"; 										  // DB-User-Password
+$dbname = "DB_Doubtful_Joy_SE"; 												  //DB-Name
+// Verbindung zur DB
+$con = mysqli_connect($host, $user, $password, $dbname);  
+// Abfrage ob Fehler bei der Installation
 if (!$con) 
 {																				// Check connection
   die("Connection failed: " . mysqli_connect_error());										// Wenn Fehler, anzeigen des Fehlers
 }
-
 ?>
 <table border="1" align="center" class="container">
 <tr>
